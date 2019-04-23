@@ -15,7 +15,6 @@
 >
 > 通常，**数值**、**字符串**、**布尔值**这三种类型，合称为**原始类型**（primitive type）的值，即它们是最基本的数据类型，不能再细分了。对象则称为合成类型（complex type）的值，因为一个对象往往是多个原始类型的值的合成，可以看作是一个存放各种值的容器。至于 undefined 和 null，一般将它们看成两个特殊值。
 >
->
 > 对象是最复杂的数据类型，又可以分成三个子类型:
 >
 > * 狭义的对象（object）
@@ -32,9 +31,7 @@
 > * instanceof运算符
 > * Object.prototype.toString方法
 >
-> 这里介绍先 typeof 运算符，typeof运算符可以返回一个值的数据类型。数值、字符串、布尔值分别返回 number、string、boolean。
-
-
+> 这里介绍先 typeof 运算符，typeof 运算符可以返回一个值的数据类型。数值、字符串、布尔值分别返回 number、string、boolean。
 
 
 

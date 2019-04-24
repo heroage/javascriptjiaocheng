@@ -583,6 +583,143 @@
 > parseInt('1546', 2) // 1
 > parseInt('546', 2) // NaN
 > ```
+>
+> 前面说过，如果`parseInt`的第一个参数不是字符串，会被先转为字符串。这会导致一些令人意外的结果。
+>
+> ```
+> String(0x11)    // 17
+>
+> parseInt(0x11, 36) // 43
+> parseInt(0x11, 2) // 1
+>
+> // 等同于
+> parseInt(String(0x11), 36)
+> parseInt(String(0x11), 2)
+>
+> // 等同于
+> parseInt('17', 36)
+> parseInt('17', 2)
+> ```
+>
+> 上面代码中，十六进制的`0x11`会被先转为十进制的17，再转为字符串。然后，再用36进制或二进制解读字符串`17`，最后返回结果`43`和`1`。
+>
+> 这种处理方式，对于八进制的前缀0，尤其需要注意。
+>
+> ```
+> parseInt(011, 2) // NaN
+>
+> // 等同于
+> parseInt(String(011), 2)
+>
+> // 等同于
+> parseInt(String(9), 2)
+> ```
+>
+> 上面代码中，第一行的`011`会被先转为字符串`9`，因为`9`不是二进制的有效字符，所以返回`NaN`。如果直接计算`parseInt('011', 2)`，`011`则是会被当作二进制处理，返回3。
+>
+> JavaScript 不再允许将带有前缀0的数字视为八进制数，而是要求忽略这个`0`。但是，为了保证兼容性，大部分浏览器并没有部署这一条规定。
+
+#### 5.2 parseFloat\(\)
+
+> `parseFloat`方法用于将一个字符串转为浮点数。
+>
+> ```
+> parseFloat('3.14') // 3.14
+> ```
+>
+> 如果字符串符合科学计数法，则会进行相应的转换。
+>
+> ```
+> parseFloat('314e-2') // 3.14
+> parseFloat('0.0314E+2') // 3.14
+> ```
+>
+> 如果字符串包含不能转为浮点数的字符，则不再进行往后转换，返回已经转好的部分。
+>
+> ```
+> parseFloat('3.14more non-digit characters') // 3.14
+> ```
+>
+> `parseFloat`方法会自动过滤字符串前导的空格。
+>
+> ```
+> parseFloat('\t\v\r12.34\n ') // 12.34
+> ```
+>
+> 如果参数不是字符串，或者字符串的第一个字符不能转化为浮点数，则返回`NaN`。
+>
+> ```
+> parseFloat([]) // NaN
+> parseFloat('FF2') // NaN
+> parseFloat('') // NaN
+> ```
+>
+> 上面代码中，尤其值得注意，`parseFloat`会将空字符串转为`NaN`。
+>
+> 这些特点使得`parseFloat`的转换结果不同于`Number`函数。
+>
+> ```
+> parseFloat(true)  // NaN
+> Number(true) // 1
+>
+> parseFloat(null) // NaN
+> Number(null) // 0
+>
+> parseFloat('') // NaN
+> Number('') // 0
+>
+> parseFloat('123.45#') // 123.45
+> Number('123.45#') // NaN
+> ```
+
+#### 5.3 isNaN\(\)
+
+> `isNaN`方法可以用来判断一个值是否为`NaN`。但是，`isNaN`只对数值有效，如果传入其他值，会被先转成数值。比如，传入字符串的时候，字符串会被先转成`NaN`，所以最后返回`true`，这一点要特别引起注意。也就是说，`isNaN`为`true`的值，有可能不是`NaN`，而是一个字符串。出于同样的原因，对于对象和数组，`isNaN`也返回`true`。
+>
+> ```
+> isNaN(NaN) // true
+> isNaN(123) // false
+>
+> isNaN('Hello') // true
+> // 相当于
+> isNaN(Number('Hello')) // true
+>
+> isNaN({}) // true
+> // 等同于
+> isNaN(Number({})) // true
+>
+> isNaN(['xzy']) // true
+> // 等同于
+> isNaN(Number(['xzy'])) // true
+> ```
+>
+> 但是，对于空数组和只有一个数值成员的数组，`isNaN`返回`false`。
+>
+> ```
+> isNaN([]) // false
+> isNaN([123]) // false
+> isNaN(['123']) // false
+> ```
+>
+> 上面代码之所以返回`false`，原因是这些数组能被`Number`函数转成数值，请参见《数据类型转换》一章。
+>
+> 因此，使用`isNaN`之前，最好判断一下数据类型。
+>
+> ```
+> function myIsNaN(value) {
+>   return typeof value === 'number' && isNaN(value);
+> }
+> ```
+>
+> 判断`NaN`更可靠的方法是，利用`NaN`为唯一不等于自身的值的这个特点，进行判断。
+>
+> ```
+> function myIsNaN(value) {
+>   return value !== value;
+> }
+> ```
+
+
 
 
 

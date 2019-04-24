@@ -940,15 +940,7 @@
 >
 > 总结一下，对于码点在`U+10000`到`U+10FFFF`之间的字符，JavaScript 总是认为它们是两个字符（`length`属性为2）。所以处理的时候，必须把这一点考虑在内，也就是说，JavaScript 返回的字符串长度可能是不正确的。
 >
-> > 补充: 关于 UTF-X
-> >
-> > 详见: [https://blog.csdn.net/guxiaonuan/article/details/78678043](https://blog.csdn.net/guxiaonuan/article/details/78678043)
-> >
-> > \| Unicode 编号范围  
-> > \(十六进制\) \| 具体的 Unicode 编号\(二进制\) \| UTF-16 编码 \| 编码后的字节数 \|  
-> > \| :--- \| :--- \| :--- \| :--- \|  
-> > \| 0000 0000 ~ 0000 FFFF \| xxxxxxxx xxxxxxxx \| xxxxxxxx xxxxxxxx \| 2 \|  
-> > \| 0001 0000---0010 FFFF \| yyyy yyyy yyxx xxxx xxxx \| 110110yy yyyyyyyy 110111xx xxxxxxxx \| 4 \|
+> > 补充: 关于 UTF 编码详见: [https://blog.csdn.net/guxiaonuan/article/details/78678043](https://blog.csdn.net/guxiaonuan/article/details/78678043)
 
 ### 3. Base64 编码
 

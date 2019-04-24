@@ -816,7 +816,7 @@
 > * \v ：垂直制表符（\u000B）
 > * \' ：单引号（\u0027）
 > * \" ：双引号（\u0022）
-> *  ：反斜杠（\u005C）
+> * ：反斜杠（\u005C）
 >
 > 反斜杠还有三种特殊用法。
 >
@@ -944,10 +944,11 @@
 > >
 > > 详见: [https://blog.csdn.net/guxiaonuan/article/details/78678043](https://blog.csdn.net/guxiaonuan/article/details/78678043)
 > >
-> > | Unicode 编号范围\(十六进制\) | 具体的 Unicode 编号\(二进制\) | UTF-16 编码 | 编码后的字节数 |
-> > | :--- | :--- | :--- | :--- |
-> > | 0000 0000 ~ 0000 FFFF | xxxxxxxx xxxxxxxx | xxxxxxxx xxxxxxxx | 2 |
-> > | 0001 0000---0010 FFFF | yyyy yyyy yyxx xxxx xxxx | 110110yy yyyyyyyy 110111xx xxxxxxxx | 4 |
+> > \| Unicode 编号范围  
+> > \(十六进制\) \| 具体的 Unicode 编号\(二进制\) \| UTF-16 编码 \| 编码后的字节数 \|  
+> > \| :--- \| :--- \| :--- \| :--- \|  
+> > \| 0000 0000 ~ 0000 FFFF \| xxxxxxxx xxxxxxxx \| xxxxxxxx xxxxxxxx \| 2 \|  
+> > \| 0001 0000---0010 FFFF \| yyyy yyyy yyxx xxxx xxxx \| 110110yy yyyyyyyy 110111xx xxxxxxxx \| 4 \|
 
 ### 3. Base64 编码
 

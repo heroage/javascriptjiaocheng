@@ -719,7 +719,18 @@
 > }
 > ```
 
+#### 5.4 isFinite\(\)
 
+> `isFinite`方法返回一个布尔值，表示某个值是否为正常的数值。
+>
+> ```
+> isFinite(Infinity) // false
+> isFinite(-Infinity) // false
+> isFinite(NaN) // false
+> isFinite(undefined) // false
+> isFinite(null) // true
+> isFinite(-1) // true
+> ```
 
 
 
